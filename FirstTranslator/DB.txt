@@ -1,0 +1,107 @@
+create database Translation;
+
+
+--TABLA WORDS
+CREATE TABLE [dbo].[TBL_WORDS]
+(
+	[GUID] NVARCHAR(100) NOT NULL PRIMARY KEY, 
+    [TranslatedWord] NVARCHAR(50) NOT NULL, 
+    [Quantity] int NOT NULL
+)
+--TABLA USERS
+CREATE TABLE [dbo].[TBL_USERS]
+(
+	[UserName] NVARCHAR(100) NOT NULL PRIMARY KEY, 
+    [Password] NVARCHAR(50) NOT NULL, 
+
+)
+
+
+--INSERT EN  WORDS
+CREATE PROCEDURE [dbo].[CREATE_WORD_PR]
+	@P_GUID nvarchar(100),
+	@P_TranslatedWord nvarchar(100),
+	@P_Quantity int
+AS
+	INSERT INTO [dbo].[TBL_WORDS] VALUES(@P_GUID,@P_TranslatedWord,@P_Quantity);
+GO;
+
+--INSERT EN  USERS
+CREATE PROCEDURE [dbo].[CREATE_USER_PR]
+	@P_UserName nvarchar(100),
+	@P_Password nvarchar(50)
+
+AS
+	INSERT INTO [dbo].[TBL_USERS] VALUES(@P_UserName,@P_Password);
+GO;
+
+
+
+
+
+
+--RETRIEVE ALL Words
+CREATE PROCEDURE [dbo].[RET_ALL_WORDS_PR]
+AS
+	SELECT GUID, TranslatedWord, [Quantity] FROM [TBL_WORDS];
+RETURN 0
+
+--RETRIEVE ALL Users
+CREATE PROCEDURE [dbo].[RET_ALL_USERS_PR]
+AS
+	SELECT [UserName], [Password] FROM [TBL_USERS];
+RETURN 0
+
+
+
+
+--UPDATE WORDS
+CREATE PROCEDURE [dbo].[UPD_WORD_PR]
+	@P_GUID nvarchar(100),
+	@P_TranslatedWord nvarchar(100),
+	@P_Quantity int
+AS
+	UPDATE [dbo].[TBL_WORDS] SET [GUID]=@P_GUID, TranslatedWord = @P_TranslatedWord, Quantity = @P_Quantity WHERE TranslatedWord=@P_TranslatedWord;
+GO;
+
+--UPDATE USERS
+CREATE PROCEDURE [dbo].[UPD_USER_PR]
+	@P_UserName nvarchar(100),
+	@P_Password nvarchar(100)
+AS
+	UPDATE [dbo].[TBL_USERS] SET [UserName]=@P_UserName, [Password] = @P_Password WHERE UserName=@P_UserName;
+GO;
+
+
+
+--RET Word BY word
+CREATE PROCEDURE [dbo].[RET_WORD_PR]
+	@P_TranslatedWord nvarchar(100)
+AS
+	SELECT  [GUID], TranslatedWord, Quantity FROM [TBL_WORDS] WHERE TranslatedWord=@P_TranslatedWord;
+RETURN 0
+
+--RET Users BY username
+CREATE PROCEDURE [dbo].[RET_USER_PR]
+	@P_UserName nvarchar(100)
+AS
+	SELECT  [UserName], [Password] FROM [TBL_USERS] WHERE Username=@P_UserName;
+RETURN 0
+
+
+
+
+
+--DELETE WORD
+CREATE PROCEDURE [dbo].[DEL_WORD_PR]
+	@P_TranslatedWord nvarchar(100)
+AS
+	DELETE FROM [TBL_WORDS] WHERE TranslatedWord=@P_TranslatedWord;
+RETURN 0
+
+--DELETE USER
+CREATE PROCEDURE [dbo].[DEL_USER_PR]
+	@P_UserName nvarchar(100)
+AS
+	DELETE FROM [TBL_USERS] WHERE UserName=@P_UserName;
+RETURN 0

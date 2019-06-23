@@ -1,0 +1,11 @@
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\bin\Debug\netcoreapp2.1\FirstTranslator.deps.json
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\bin\Debug\netcoreapp2.1\FirstTranslator.runtimeconfig.json
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\bin\Debug\netcoreapp2.1\FirstTranslator.runtimeconfig.dev.json
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\bin\Debug\netcoreapp2.1\FirstTranslator.dll
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\bin\Debug\netcoreapp2.1\FirstTranslator.pdb
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.csprojAssemblyReference.cache
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.csproj.CoreCompileInputs.cache
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.AssemblyInfoInputs.cache
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.AssemblyInfo.cs
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.dll
+C:\Users\milton\source\repos\FirstTranslator\FirstTranslator\obj\Debug\netcoreapp2.1\FirstTranslator.pdb
