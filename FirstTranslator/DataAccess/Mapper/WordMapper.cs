@@ -14,6 +14,8 @@ namespace DataAccess.Mapper
         private const string DB_COL_GUID = "GUID";
         private const string DB_COL_TranslatedWord = "TranslatedWord";
         private const string DB_COL_Quantity = "Quantity";
+        private const string DB_COL_Sorce = "Source";
+        private const string DB_COL_Target = "Target";
 
 
 
@@ -25,6 +27,8 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_GUID, w.GUID);
             operation.AddVarcharParam(DB_COL_TranslatedWord, w.TranslatedWord);
             operation.AddIntParam(DB_COL_Quantity, w.Quantity);
+            operation.AddVarcharParam(DB_COL_Sorce, w.Source);
+            operation.AddVarcharParam(DB_COL_Target, w.Target);
 
 
             return operation;
@@ -54,6 +58,9 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_GUID, w.GUID);
             operation.AddVarcharParam(DB_COL_TranslatedWord, w.TranslatedWord);
             operation.AddIntParam(DB_COL_Quantity, w.Quantity);
+            operation.AddVarcharParam(DB_COL_Sorce, w.Source);
+            operation.AddVarcharParam(DB_COL_Target, w.Target);
+
 
             return operation;
         }

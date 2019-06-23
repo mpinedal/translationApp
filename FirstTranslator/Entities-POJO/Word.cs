@@ -12,10 +12,12 @@ namespace Entities_POJO
         public string GUID { get; set; }
         public string TranslatedWord { get; set; }
         public int Quantity { get; set; }
+        public string Source { get; set; }
+        public string Target { get; set; }
 
 
         public Word()
-        {
+        {   
 
         }
 
@@ -25,6 +27,18 @@ namespace Entities_POJO
             Guid newGuid = Guid.NewGuid();
             GUID = newGuid.ToString();
             TranslatedWord = translatedWord;
+            Quantity = 1;
+
+        }
+
+        public Word(string translatedWord, string source, string target)
+        {
+
+            Guid newGuid = Guid.NewGuid();
+            GUID = newGuid.ToString();
+            TranslatedWord = translatedWord;
+            Source = source;
+            Target = target;
             Quantity = 1;
 
         }

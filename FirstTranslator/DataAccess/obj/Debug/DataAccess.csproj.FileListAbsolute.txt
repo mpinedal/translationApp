@@ -11,3 +11,16 @@ C:\Users\milton\source\repos\FirstTranslator\DataAccess\obj\Debug\DataAccess.csp
 C:\Users\milton\source\repos\FirstTranslator\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\milton\source\repos\FirstTranslator\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\milton\source\repos\FirstTranslator\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\Entities-POJO.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\System.Security.AccessControl.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\System.Security.Permissions.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\bin\Debug\Entities-POJO.pdb
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\milton\source\repos\translationApp\FirstTranslator\DataAccess\obj\Debug\DataAccess.pdb

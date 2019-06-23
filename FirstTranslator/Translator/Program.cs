@@ -8,6 +8,8 @@ namespace FirstTranslator
 {
     class Program
     {
+
+        //Test branch commetnt
         private const string path = @"C:\Users\milton\source\repos\FirstTranslator\JSON\Sicen-722f8698c05e.json";
 
  
@@ -75,7 +77,7 @@ namespace FirstTranslator
 
                     for (int i = 0; i < wordArray.Length; i++)
                     {
-                        var word = new Word(wordArray[i]);
+                        var word = new Word(wordArray[i], source, target);
                         management.Create(word);
 
                     }
