@@ -17,7 +17,12 @@ namespace FirstTranslator
             crudWord = new WordCrudFactory();
         }
 
-        public void Create(Word word)
+        public void PowerCreate(Word word)
+        {
+            crudWord.Create(word);
+        }
+
+            public string Create(Word word)
         {
 
             try
@@ -29,10 +34,12 @@ namespace FirstTranslator
                     //We should add 1 to the quantity
                     w.Quantity = w.Quantity + 1;
                     crudWord.Update(w);
+                    return w.Translation;
                 }
                 else
                 {
-                    crudWord.Create(word);
+                    //word does not exist, we must ask for translation
+                    return "word does not exist";
                 }
 
             }
@@ -42,8 +49,8 @@ namespace FirstTranslator
                 Console.WriteLine(ex.ToString());
             }
 
-     
 
+            return null;
         }
 
 

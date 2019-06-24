@@ -14,8 +14,9 @@ namespace DataAccess.Mapper
         private const string DB_COL_GUID = "GUID";
         private const string DB_COL_TranslatedWord = "TranslatedWord";
         private const string DB_COL_Quantity = "Quantity";
-        private const string DB_COL_Sorce = "Source";
+        private const string DB_COL_Source = "Source";
         private const string DB_COL_Target = "Target";
+        private const string DB_COL_Translation = "Translation";
 
 
 
@@ -27,8 +28,9 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_GUID, w.GUID);
             operation.AddVarcharParam(DB_COL_TranslatedWord, w.TranslatedWord);
             operation.AddIntParam(DB_COL_Quantity, w.Quantity);
-            operation.AddVarcharParam(DB_COL_Sorce, w.Source);
+            operation.AddVarcharParam(DB_COL_Source, w.Source);
             operation.AddVarcharParam(DB_COL_Target, w.Target);
+            operation.AddVarcharParam(DB_COL_Translation, w.Translation);
 
 
             return operation;
@@ -40,6 +42,8 @@ namespace DataAccess.Mapper
 
             var w = (Word)entity;
             operation.AddVarcharParam(DB_COL_TranslatedWord, w.TranslatedWord);
+            operation.AddVarcharParam(DB_COL_Source, w.Source);
+            operation.AddVarcharParam(DB_COL_Target, w.Target);
 
             return operation;
         }
@@ -58,8 +62,11 @@ namespace DataAccess.Mapper
             operation.AddVarcharParam(DB_COL_GUID, w.GUID);
             operation.AddVarcharParam(DB_COL_TranslatedWord, w.TranslatedWord);
             operation.AddIntParam(DB_COL_Quantity, w.Quantity);
-            operation.AddVarcharParam(DB_COL_Sorce, w.Source);
+
+            operation.AddVarcharParam(DB_COL_Source, w.Source);
             operation.AddVarcharParam(DB_COL_Target, w.Target);
+
+            operation.AddVarcharParam(DB_COL_Translation, w.Translation);
 
 
             return operation;
@@ -94,7 +101,11 @@ namespace DataAccess.Mapper
             {
                 GUID = GetStringValue(row, DB_COL_GUID),
                 TranslatedWord = GetStringValue(row, DB_COL_TranslatedWord),
-                Quantity = GetIntValue(row, DB_COL_Quantity)
+                Quantity = GetIntValue(row, DB_COL_Quantity),
+                Source = GetStringValue(row, DB_COL_Source),
+                Target = GetStringValue(row, DB_COL_Target),
+                Translation = GetStringValue(row, DB_COL_Translation)
+
             };
 
             return word;

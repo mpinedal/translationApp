@@ -1,7 +1,7 @@
 ﻿using System;
-using Google.Cloud.Translation.V2;
-
-using Google.Apis.Auth.OAuth2;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Entities_POJO;
 
 namespace FirstTranslator
@@ -9,10 +9,8 @@ namespace FirstTranslator
     class Program
     {
 
-        //Test branch commetnt
-        private const string path = @"C:\Users\milton\source\repos\FirstTranslator\JSON\Sicen-722f8698c05e.json";
+        //Test branch
 
- 
 
         static void Main(string[] args)
         {
@@ -39,48 +37,69 @@ namespace FirstTranslator
 
         private static void Excecute(string option)
         {
+
             switch (option)
             {
 
                 case "1":
-                    showLangueges();
+                    ShowLanguages();
                     break;
                 case "2":
+                    List<string> languages = GetLanguages();
+
+
+                    //Source
                     Console.WriteLine("**** Type: '!' to go back");
-                    Console.WriteLine("Enter the source language code");
-                    string source = Console.ReadLine();
+                    Console.WriteLine("Enter the source language");
+                    string source = Console.ReadLine().ToLower();
                     if (source.Equals("!"))
                     {
                         break;
                     }
+                    else if (!languages.Contains(source))
+                    {
+                        Console.WriteLine("We don't have that language in our database!");
+                        Console.WriteLine("Would you like to add it? YES/NO");
+                        string answer = Console.ReadLine().ToLower();
+                        if (answer.Equals("no") || answer.Equals("!"))
+                        {
+                            break;
+                        }
+                    }
 
-                    Console.WriteLine("Enter the target language code");
-                    string target = Console.ReadLine();
+
+                    //Target
+                    Console.WriteLine("Enter the target language");
+                    string target = Console.ReadLine().ToLower();
 
                     if ( target.Equals("!") )
                     {
                         break;
                     }
+                    else if (!languages.Contains(target))
+                    {
+                        Console.WriteLine("We don't have that language in our database!");
+                        Console.WriteLine("Would you like to add it? YES/NO");
+                        string answer = Console.ReadLine().ToLower();
+                        if (answer.Equals("no") || answer.Equals("!"))
+                        {
+                            break;
+                        }
+                    }
+
                     Console.WriteLine("Please insert the text you wish to translate");
-                    string text = Console.ReadLine();
+                    string text = Console.ReadLine().ToLower();
 
                     if (text.Equals("!"))
                     {
                         break;
                     }
 
-                    TranslateText(source, target, text);
 
-                    var management = new WordManagement();
 
                     var wordArray = text.Split(' ');
+                    TranslateText(wordArray, source, target);
 
-                    for (int i = 0; i < wordArray.Length; i++)
-                    {
-                        var word = new Word(wordArray[i], source, target);
-                        management.Create(word);
-
-                    }
 
 
                     break;
@@ -90,19 +109,53 @@ namespace FirstTranslator
             }
         }
 
-        private static void showLangueges()
+        private static List<string> ShowLanguages()
         {
             Console.WriteLine("Languages....");
 
-            string jsonPath = path;
-            var credential = GoogleCredential.FromFile(jsonPath);
-            //var storage = TranslationClient.Create(credential);
-            TranslationClient client = TranslationClient.Create(credential);
+            List<string> languagesList = new List<string>();
+            var management = new WordManagement();
 
-            foreach (var language in client.ListLanguages(LanguageCodes.English))
+            var wordList = management.RetrieveAll();
+        foreach(Word element in wordList)
             {
-                Console.WriteLine($"{language.Code}\t{language.Name}");
+                languagesList.Add(element.Source);
+                languagesList.Add(element.Target);
             }
+
+            var uniqueLanguages = languagesList.Distinct();
+         
+
+            foreach (string element in uniqueLanguages)
+            {
+                Console.WriteLine(element);
+            }
+
+            var unique = uniqueLanguages.ToList();
+            return unique;
+
+
+        }
+        private static List<string> GetLanguages()
+        {
+         
+
+            List<string> languagesList = new List<string>();
+            var management = new WordManagement();
+
+            var wordList = management.RetrieveAll();
+            foreach (Word element in wordList)
+            {
+                languagesList.Add(element.Source);
+                languagesList.Add(element.Target);
+            }
+
+            var uniqueLanguages = languagesList.Distinct();
+            var unique = uniqueLanguages.ToList();
+
+            return unique;
+
+
         }
 
         private static void ViewMenu()
@@ -113,30 +166,41 @@ namespace FirstTranslator
             Console.WriteLine("0. Quit");
         }
 
-        public static string TranslateText(string source, string target, string text)
+        public static void TranslateText(string[] wordArray, string source, string target)
         {
+            string tranlatedText = "";
 
-            try
+            var management = new WordManagement();
+
+            for (int i = 0; i < wordArray.Length; i++)
             {
-                string jsonPath = path;
-                var credential = GoogleCredential.FromFile(jsonPath);
-                //var storage = TranslationClient.Create(credential);
-                TranslationClient client = TranslationClient.Create(credential);
-                var response = client.TranslateText(
-                    text: text,
-                    targetLanguage: target,
-                    sourceLanguage: source);
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(response.TranslatedText);
+                var word = new Word(wordArray[i], source, target);
+                string result = management.Create(word);
+                if (!result.Equals("word does not exist"))
+                {
+                    tranlatedText += result + " ";
+                }
+                else if (result.Equals("word does not exist"))
+                {
+                    Console.WriteLine($"We dont have the translation for: {wordArray[i]} ");
+                    Console.WriteLine($"Please provide a translation ");
+                    string translation = Console.ReadLine();
+                    word.Translation = translation;
+                    Console.WriteLine($"Thank you ");
+                    management.PowerCreate(word);
+                    tranlatedText += translation + " ";
+                }
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(tranlatedText);
                 Console.ResetColor();
-                return response.TranslatedText;
+
             }
-            catch(Exception ex)
-            {
-                Console.WriteLine("Invalid language code!!");
-                Console.WriteLine("Make sure to check the list");
-                return null;
-            }
+
+
+
+
+
         }
     }
 }
