@@ -6,7 +6,12 @@ CREATE TABLE [dbo].[TBL_WORDS]
 (
 	[GUID] NVARCHAR(100) NOT NULL PRIMARY KEY, 
     [TranslatedWord] NVARCHAR(50) NOT NULL, 
-    [Quantity] int NOT NULL
+    [Quantity] int NOT NULL,
+    [Source] NVARCHAR(50) NOT NULL,
+	[Target] NVARCHAR(50) NOT NULL,
+	[Translation] NVARCHAR(50) NOT NULL
+
+
 )
 --TABLA USERS
 CREATE TABLE [dbo].[TBL_USERS]
@@ -17,14 +22,17 @@ CREATE TABLE [dbo].[TBL_USERS]
 )
 
 
---INSERT EN  WORDS
+--INSERT EN  WORDS ***
 CREATE PROCEDURE [dbo].[CREATE_WORD_PR]
 	@P_GUID nvarchar(100),
 	@P_TranslatedWord nvarchar(100),
-	@P_Quantity int
+	@P_Quantity int,
+	@P_Source nvarchar(50),
+	@P_Target nvarchar(50),
+	@P_Translation nvarchar(100)
 AS
-	INSERT INTO [dbo].[TBL_WORDS] VALUES(@P_GUID,@P_TranslatedWord,@P_Quantity);
-GO;
+	INSERT INTO [dbo].[TBL_WORDS] VALUES(@P_GUID,@P_TranslatedWord,@P_Quantity,@P_Source,@P_Target,@P_Translation);
+
 
 --INSERT EN  USERS
 CREATE PROCEDURE [dbo].[CREATE_USER_PR]
@@ -40,10 +48,10 @@ GO;
 
 
 
---RETRIEVE ALL Words
+--RETRIEVE ALL Words **
 CREATE PROCEDURE [dbo].[RET_ALL_WORDS_PR]
 AS
-	SELECT GUID, TranslatedWord, [Quantity] FROM [TBL_WORDS];
+	SELECT GUID, TranslatedWord, [Quantity], [Source], [Target], [Translation] FROM [TBL_WORDS];
 RETURN 0
 
 --RETRIEVE ALL Users
@@ -55,14 +63,18 @@ RETURN 0
 
 
 
---UPDATE WORDS
+--UPDATE WORDS**
 CREATE PROCEDURE [dbo].[UPD_WORD_PR]
 	@P_GUID nvarchar(100),
 	@P_TranslatedWord nvarchar(100),
-	@P_Quantity int
+	@P_Quantity int,
+	@P_Source nvarchar(50),
+	@P_Target nvarchar(50),
+	@P_Translation nvarchar(100)
+	
 AS
-	UPDATE [dbo].[TBL_WORDS] SET [GUID]=@P_GUID, TranslatedWord = @P_TranslatedWord, Quantity = @P_Quantity WHERE TranslatedWord=@P_TranslatedWord;
-GO;
+	UPDATE [dbo].[TBL_WORDS] SET [GUID]=@P_GUID, TranslatedWord = @P_TranslatedWord, Quantity = @P_Quantity,[Source]= @P_Source, [Target] = @P_Target, [Translation] = @P_Translation   WHERE TranslatedWord=@P_TranslatedWord and [Source] = @P_Source and [Target] = @P_Target;
+
 
 --UPDATE USERS
 CREATE PROCEDURE [dbo].[UPD_USER_PR]
@@ -74,14 +86,16 @@ GO;
 
 
 
---RET Word BY word
+--RET Word BY word **
 CREATE PROCEDURE [dbo].[RET_WORD_PR]
-	@P_TranslatedWord nvarchar(100)
+	@P_TranslatedWord nvarchar(100),
+	@P_Source nvarchar(50),
+	@P_Target nvarchar(50)
 AS
-	SELECT  [GUID], TranslatedWord, Quantity FROM [TBL_WORDS] WHERE TranslatedWord=@P_TranslatedWord;
+	SELECT  [GUID], TranslatedWord, Quantity, [Source], [Target], [Translation] FROM [TBL_WORDS] WHERE TranslatedWord=@P_TranslatedWord and [Source] = @P_Source and [Target] = @P_Target;
 RETURN 0
 
---RET Users BY username
+--RET Users BY username 
 CREATE PROCEDURE [dbo].[RET_USER_PR]
 	@P_UserName nvarchar(100)
 AS
