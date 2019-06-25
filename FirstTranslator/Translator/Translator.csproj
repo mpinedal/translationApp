@@ -76,6 +76,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RecordManagement.cs" />
+    <Compile Include="UserManagement.cs" />
     <Compile Include="WordManagement.cs" />
   </ItemGroup>
   <ItemGroup>

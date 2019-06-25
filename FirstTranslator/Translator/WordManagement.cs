@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace FirstTranslator
+namespace Translator
 {
     class WordManagement
     {
@@ -22,7 +22,8 @@ namespace FirstTranslator
             crudWord.Create(word);
         }
 
-            public string Create(Word word)
+
+        public string UpdateQuantity(Word word)
         {
 
             try
@@ -53,13 +54,35 @@ namespace FirstTranslator
             return null;
         }
 
+        public string Check(Word word)
+        {
+
+       
+                var w = crudWord.Retrieve<Word>(word);
+                if (w != null)
+                {
+                    //Word alreay exists
+                    return w.Translation;
+                }
+                else
+                {
+                    //word does not exist
+                    return "word does not exist";
+                }
+
+            
+      
+
+    
+        }
+
 
         public List<Word> RetrieveAll()
         {
             return crudWord.RetrieveAll<Word>();
         }
 
-        public Word RetrieveById(Word word)
+        public Word RetrieveByWord(Word word)
         {
             return crudWord.Retrieve<Word>(word);
         }

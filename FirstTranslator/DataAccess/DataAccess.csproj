@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crud\CrudFractory.cs" />
+    <Compile Include="Crud\RecordCrudFactory.cs" />
     <Compile Include="Crud\UserCrudFactory.cs" />
     <Compile Include="Crud\WordCrudFactory.cs" />
     <Compile Include="Dao\SqlDao.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Mapper\EntityMapper.cs" />
     <Compile Include="Mapper\IObjectMapper.cs" />
     <Compile Include="Mapper\ISqlStatement.cs" />
+    <Compile Include="Mapper\RecordMapper.cs" />
     <Compile Include="Mapper\UserMapper.cs" />
     <Compile Include="Mapper\WordMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

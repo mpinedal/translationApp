@@ -10,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Crud
 {
-    public class UserCrudFactory : CrudFactory
+    public class RecordCrudFactory : CrudFactory
     {
 
-        UserMapper mapper;
+        RecordMapper mapper;
 
-        public UserCrudFactory() : base()
+
+        public RecordCrudFactory() : base()
         {
-            mapper = new UserMapper();
+            mapper = new RecordMapper();
             dao = SqlDao.GetInstance();
         }
 
         public override void Create(BaseEntity entity)
         {
-            var user = (User)entity;
-            var sqlOperation = mapper.GetCreateStatement(user);
+            var record = (Record)entity;
+            var sqlOperation = mapper.GetCreateStatement(record);
             dao.ExecuteProcedure(sqlOperation);
         }
 
@@ -32,14 +33,14 @@ namespace DataAccess.Crud
 
         public override T Retrieve<T>(BaseEntity entity)
         {
-            var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatement(entity));
-            var dic = new Dictionary<string, object>();
-            if (lstResult.Count > 0)
-            {
-                dic = lstResult[0];
-                var objs = mapper.BuildObject(dic);
-                return (T)Convert.ChangeType(objs, typeof(T));
-            }
+            //var lstResult = dao.ExecuteQueryProcedure(mapper.GetRetriveStatement(entity));
+            //var dic = new Dictionary<string, object>();
+            //if (lstResult.Count > 0)
+            //{
+            //    dic = lstResult[0];
+            //    var objs = mapper.BuildObject(dic);
+            //    return (T)Convert.ChangeType(objs, typeof(T));
+            //}
 
             return default(T);
         }
@@ -64,16 +65,15 @@ namespace DataAccess.Crud
 
         public override void Update(BaseEntity entity)
         {
-            var user = (User)entity;
-            dao.ExecuteProcedure(mapper.GetUpdateStatement(user));
+          //  var record = (Record)entity;
+           // dao.ExecuteProcedure(mapper.GetUpdateStatement(record));
         }
 
         public override void Delete(BaseEntity entity)
         {
-            var user = (User)entity;
-            dao.ExecuteProcedure(mapper.GetDeleteStatement(user));
+            // var record = (Word)entity;
+            // dao.ExecuteProcedure(mapper.GetDeleteStatement(record));
         }
-
 
     }
 }
