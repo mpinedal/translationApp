@@ -119,3 +119,24 @@ CREATE PROCEDURE [dbo].[DEL_USER_PR]
 AS
 	DELETE FROM [TBL_USERS] WHERE UserName=@P_UserName;
 RETURN 0
+
+
+--INSERT EN  Records
+CREATE PROCEDURE [dbo].[CREATE_RECORD_PR]
+	@P_GUID nvarchar(100),
+	@P_Date nvarchar(100),
+	@P_Source nvarchar(100),
+	@P_Target nvarchar(100),
+	@P_OriginalPhrase nvarchar(500),
+	@P_Translation nvarchar(500),
+	@P_Popularity int,
+	@P_User nvarchar(100)
+
+AS
+	INSERT INTO [dbo].[TBL_RECORDS] VALUES(@P_GUID,@P_Date,@P_Source,@P_Target,@P_OriginalPhrase,@P_Translation,@P_Popularity,@P_User);
+
+	----RETRIEVE ALL Records **
+CREATE PROCEDURE [dbo].[RET_ALL_RECORDS_PR]
+AS
+	SELECT [GUID], [Date],[Source], [Target], [OriginalPhrase], [Translation], [Popularity], [User] FROM [TBL_RECORDS];
+RETURN 0
